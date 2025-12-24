@@ -3,8 +3,15 @@
 import { motion } from 'framer-motion'
 import { Download, Github, Linkedin, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useAbout } from '../hooks/useAbout'
+import { useSkills } from '../hooks/useSkills'
+import { useProjects } from '../hooks/useProjects'
 
 function Home() {
+  const { about } = useAbout()
+  const { skills, loading: skillsLoading } = useSkills()
+  const { projects, loading: projectsLoading } = useProjects({ featuredOnly: true })
+
   return (
     <div className="max-w-6xl mx-auto px-4 pt-20 pb-16">
       {/* Hero */}
@@ -121,6 +128,112 @@ function Home() {
             </p>
           </motion.div>
         ))}
+      </section>
+
+      {/* About + Skills preview */}
+      <section className="mt-16 grid gap-6 md:grid-cols-[minmax(0,2fr),minmax(0,3fr)] items-start">
+        {/* About */}
+        <div className="rounded-2xl border border-slate-800 bg-[#050816]/80 p-6">
+          <h2 className="text-xl font-semibold text-slate-50 mb-3">
+            About
+          </h2>
+          <p className="text-sm text-slate-300">
+            {about?.summary ||
+              'Full‑stack MERN developer focused on building scalable web apps and custom platforms.'}
+          </p>
+          <Link
+            to="/about"
+            className="mt-4 inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200 transition"
+          >
+            Read more
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        {/* Skills */}
+        <div className="rounded-2xl border border-slate-800 bg-[#050816]/80 p-6">
+          <h2 className="text-xl font-semibold text-slate-50 mb-4">
+            Skills
+          </h2>
+          {skillsLoading ? (
+            <p className="text-sm text-slate-400">Loading skills…</p>
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              {skills.slice(0, 10).map((skill) => (
+                <span
+                  key={skill._id || skill.name}
+                  className="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/60 px-3 py-1 text-xs text-slate-200"
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="mt-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-slate-50">
+            Featured Projects
+          </h2>
+          <Link
+            to="/projects"
+            className="text-sm text-teal-300 hover:text-teal-200 transition"
+          >
+            View all
+          </Link>
+        </div>
+
+        {projectsLoading ? (
+          <p className="text-sm text-slate-400">Loading projects…</p>
+        ) : projects.length === 0 ? (
+          <p className="text-sm text-slate-400">Projects coming soon.</p>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <article
+                key={project._id}
+                className="rounded-2xl border border-slate-800 bg-[#050816]/80 p-6 hover:border-teal-400/70 hover:-translate-y-1 transition-transform"
+              >
+                <h3 className="text-lg font-semibold text-slate-50 mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-slate-300 mb-3 line-clamp-3">
+                  {project.description}
+                </p>
+                {project.techStack?.length > 0 && (
+                  <p className="text-xs text-slate-400 mb-3">
+                    {project.techStack.join(' • ')}
+                  </p>
+                )}
+                <div className="flex gap-3 text-xs">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-teal-300 hover:text-teal-200"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-slate-300 hover:text-slate-100"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   )
