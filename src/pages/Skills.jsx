@@ -30,7 +30,7 @@ function Skills() {
   return (
     <div className="max-w-5xl mx-auto px-4 pt-24 pb-16 text-slate-100">
       <header className="mb-8">
-        <p className="text-xs uppercase tracking-[0.22em] text-teal-300 mb-2">
+        <p className="text-base uppercase tracking-[0.22em] text-teal-300 mb-3">
           Skills
         </p>
         <h1 className="text-3xl md:text-4xl font-semibold">

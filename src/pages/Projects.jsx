@@ -14,7 +14,7 @@ function Projects() {
       <section className="rounded-3xl border border-slate-800 bg-[#050816]/90 px-6 py-8 md:px-10 md:py-10">
         {/* Header */}
         <header className="mb-6">
-          <p className="text-xs uppercase tracking-[0.22em] text-teal-300 mb-2">
+          <p className="text-base uppercase tracking-[0.22em] text-teal-300 mb-3">
             Projects
           </p>
           <h1 className="text-3xl md:text-4xl font-semibold text-slate-50">

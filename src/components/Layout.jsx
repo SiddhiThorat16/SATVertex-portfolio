@@ -15,6 +15,8 @@ function Layout({ children }) {
     { to: '/projects', label: 'Projects' },
     { to: '/skills', label: 'Skills' },
     { to: '/blog', label: 'Blog' },
+    { to: '/experience', label: 'Experience' },
+    { to: '/testimonials', label: 'Testimonials' },
     { to: '/contact', label: 'Contact' }
   ]
 

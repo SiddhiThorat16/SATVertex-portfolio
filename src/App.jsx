@@ -6,6 +6,9 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Skills from './pages/Skills'
 import Projects from './pages/Projects'
+import Blog from './pages/Blog'
+import Testimonials from './pages/Testimonials'
+import Experience from './pages/Experience'
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/experience" element={<Experience />} />
         </Routes>
       </Layout>
     </Router>

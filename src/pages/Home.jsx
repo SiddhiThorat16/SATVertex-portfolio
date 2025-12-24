@@ -29,7 +29,7 @@ function Home() {
           className="relative z-10 max-w-3xl"
         >
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal-300 mb-3">
-            Full‑Stack Web Developer
+            Full‑Stack Developer
           </p>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-50 leading-tight">
